@@ -12,8 +12,9 @@ const TEXT =
 const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
 const outFile = join(outDir, "entry.txt");
 
-// Guard: the bounty allows 1-280 code points; this text is exactly 112.
-if ([...TEXT].length !== 112) {
+// Guard: the bounty allows 1-280 code points; this text is exactly 111
+// (79 + 1 space + 13 + 1 space + 17).
+if ([...TEXT].length !== 111) {
   throw new Error(`unexpected entry length: ${[...TEXT].length} code points`);
 }
 
