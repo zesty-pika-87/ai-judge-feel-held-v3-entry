@@ -12,6 +12,11 @@ const TEXT =
 const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
 const outFile = join(outDir, "entry.txt");
 
+// Guard: the bounty allows 1-280 code points; this text is exactly 112.
+if ([...TEXT].length !== 112) {
+  throw new Error(`unexpected entry length: ${[...TEXT].length} code points`);
+}
+
 // Never rmSync the output dir: on the grader it is a mount point
 // and removing it fails with EBUSY (exit 1). mkdir only.
 mkdirSync(outDir, { recursive: true });
